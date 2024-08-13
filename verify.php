@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if (isset($_SESSION['id'])){
+        header("location:index.php");
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,20 +22,24 @@
         <?php 
                 if($l == "admin" && $p == "ad1234")
                 {
+                        $_SESSION['username']= "admin";
+                        $_SESSION['role']="a";
+                        $_SESSION['id']=session_id();
                         echo "<p style='text-align: center;'>ยินดีต้อนรับคุณ ADMIN</p>";
-                        echo "<div align='center'><a href='index.php'>กลับไปหน้าหลัก</a></div>";
                 }
                 else if($l == "member" && $p == "mem1234")
                 {
+                        $_SESSION['username']= "member";
+                        $_SESSION['role']="m";
+                        $_SESSION['id']=session_id();
                         echo "<p style='text-align: center;'>ยินดีต้อนรับคุณ MEMBER</p>";
-                        echo "<div align='center'><a href='index.php'>กลับไปหน้าหลัก</a></div>";
                 }
                 else
                 {
                         echo "<p style='text-align: center;'>ชื่อบัญชีหรือรหัสไม่ถูกต้อง</p>";
-                        echo "<div align='center'><a href='index.php'>กลับไปหน้าหลัก</a></div>";
                 }
         ?>
+        <div align='center'><a href='index.php'>กลับไปหน้าหลัก</a></div>
         
         
 </body>
