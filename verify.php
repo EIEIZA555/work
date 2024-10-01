@@ -39,11 +39,11 @@ if (isset($_SESSION['id'])){
                         die();
 
                 }
-                else
-                {
+                else {
                         $_SESSION['error']="error";
-                        echo "<p style='text-align: center;'>ชื่อบัญชีหรือรหัสไม่ถูกต้อง</p>";
-                }
+                        header("Location: login.php");
+                        die();
+                    }
         ?>
         
         

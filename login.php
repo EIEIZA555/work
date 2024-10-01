@@ -23,7 +23,15 @@ if (isset($_SESSION['id'])) {
         <?php include "nav.php" ?>
         <div class="row ">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
-                <div class="card mt-4 ">
+                <?php 
+                    if (isset($_SESSION['error']) ) {
+                        echo "<div class='alert alert-danger mt-3' role='alert'>
+                                ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง
+                                </div>";
+                        unset($_SESSION['error']);
+                    }
+                ?>
+                <div class="card mt-2 ">
                     <h5 class="card-header">เข้าสู่ระบบ</h5>
                     <div class="card-body">
                         <form action="verify.php" method="post">
@@ -48,9 +56,12 @@ if (isset($_SESSION['id'])) {
                 </div>
             </div>
         </div>
+        
     </div>
 
     </div>
+    <br>
+    <div style="text-align: center;"> ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a> </div>
 </body>
 
 </html>
