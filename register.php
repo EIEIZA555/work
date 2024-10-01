@@ -46,7 +46,7 @@ if (isset($_SESSION['id'])) {
 									</div>
 								</div>
 								<div class="row">
-									<label for="m" class="col-lg-3 col-form-label mt-3">เพศ:</label>
+									<label for="" class="col-lg-3 col-form-label mt-3">เพศ:</label>
 									<div class="col-lg-9 mt-3 form-check ">
 										<input id="m" type="radio" name="gender" class="form-check-input " required>
 										<label for="m" class="form-check-label">ชาย</label><br>
