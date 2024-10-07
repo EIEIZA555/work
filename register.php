@@ -20,9 +20,21 @@ if (isset($_SESSION['id'])) {
 	<h1 style="text-align: center;">Register</h1>
 	<div class="container-lg">
 		<?php include "nav.php" ?>
-		<div class="row ">
-			<div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
-				<div class="card mt-2 ">
+		<div class="row">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-6">
+				<?php 
+					if(isset($_SESSION['add_login'])){
+						if($_SESSION['add_login']=='error'){
+							echo "<div class='alert alert-danger'>
+							ชื่อบัญชีซ้ำหรือมีฐานข้อมูลมีปัญหา</div>";
+						}else {
+							echo "<div class='alert alert-success'>	
+							เพิ่มบัญชีเรียบร้อยแล้ว</div>";
+						}
+						unset($_SESSION['add_login']);
+					}
+				?>
 					<div class="card border-primary">
 						<h5 class="card-header bg-primary text-white">เข้าสู่ระบบ</h5>
 						<div class="card-body">
