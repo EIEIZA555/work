@@ -41,7 +41,7 @@ if (isset($_SESSION['id'])) {
                             </div>
                             <div class="form-group mt-3">
                                 <label for="pwd" class="form-label">Password:</label>
-                                <input id="pwd" type="password" class="form-control" name="pwd">
+                                <input id="pwd" type="password" name="pwd" class="form-control" >
                             </div>
                             <div class="mt-3 d-flex justify-content-center">
                                 <button type="submit" class="btn btn-success btn-sm me-2">

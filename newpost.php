@@ -17,10 +17,13 @@ if (!isset($_SESSION['id'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+<div class="container-lg">
     <h1 style="text-align: center;">Webboard KakKak</h1>
-    <hr>
-    <div class="card text-dark bg-white border-info">
-        <div class="card-header bg-info text-white">ตั้งกระทู้ใหม่
+    <?php 
+            include "nav.php"
+        ?>
+    <div class="card text-dark bg-white border-info col-lg-4 mt-3 mx-auto">
+        <div class="card-header bg-info text-white">ตั้งกระทู้ใหม่</div>
             <div class="card-body">
                 <form action="newpost_save.php" method="post">
                     <div class="row mb-3">
@@ -51,9 +54,8 @@ if (!isset($_SESSION['id'])){
                             <textarea type="text" name="comment" rows="8" class="form-control" required></textarea>
                         </div>
                     </div>
-                    <div class="row ">
-                        <label class="col-lg-3 col-form-label">หัวข้อ :</label>
-                        <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-12">
                             <center>
                                 <button type="submit" class="btn btn-info btn-sm text-white">
                                     <i class="bi bi-caret-right-square me-1"></i>บันทึกข้อความ
@@ -63,10 +65,9 @@ if (!isset($_SESSION['id'])){
                     </div>
                 </form>
             </div>
-        </div>
 
 
     </div>
-    
+    </div>
 </body>
 </html>

@@ -5,9 +5,9 @@ if (isset($_SESSION['id'])) {
         die();
 }
 $login = $_POST['login'];
-$passwd = $_POST['pwd'];
+$pwd = $_POST['pwd'];
 $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
-$sql = "SELECT * FROM user where login ='$login'and password=sha1('$pwd') ";
+$sql = "SELECT * FROM user where login ='$login'and password = sha1('$pwd') ";
 $result = $conn->query($sql);
 if ($result->rowCount() == 1) {
         $data = $result->fetch(PDO::FETCH_ASSOC);

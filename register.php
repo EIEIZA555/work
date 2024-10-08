@@ -21,8 +21,8 @@ if (isset($_SESSION['id'])) {
 	<div class="container-lg">
 		<?php include "nav.php" ?>
 		<div class="row">
-			<div class="col-lg-3"></div>
-			<div class="col-lg-6">
+			<div class="col-lg-3 "></div>
+			<div class="col-lg-6 mt-3">
 				<?php 
 					if(isset($_SESSION['add_login'])){
 						if($_SESSION['add_login']=='error'){
