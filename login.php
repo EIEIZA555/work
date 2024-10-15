@@ -60,7 +60,7 @@ if (isset($_SESSION['id'])) {
                             </div>
                             <div class="form-group mt-3">
                                 <label for="pwd" class="form-label">Password:</label>
-                                <div class="d-flex align-items-center">
+                                <div class="input-group">
                                     <input id="pwd" type="password" name="pwd" class="form-control">
                                     <button class="btn btn-secondary" type="button" onclick="showPassword()">
                                         <i id="showpwd" class="bi bi-eye"></i>

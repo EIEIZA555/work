@@ -19,15 +19,18 @@ if (isset($_SESSION['id'])) {
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	<script>
 		function validpwd() {
-			let pwd = document.getElementById("pwd").value;
-			let cpwd = document.getElementById("cpwd").value;
+			let pwd = document.getElementById("pwd");
+			let confirmPwd = document.getElementById("confirmPwd");
+			let pwd1 = pwd.value;
+			let pwd2 = confirmPwd.value;
 
-			if (cpwd != pwd) {
+			if (pwd2 != pwd1) {
 				alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
-				return false;
+				pwd.value="";
+				confirmPwd.value="";
 			}
 
-			return true;
+
 		}
 	</script>
 </head>
@@ -54,7 +57,7 @@ if (isset($_SESSION['id'])) {
 				<div class="card border-primary">
 					<h5 class="card-header bg-primary text-white">เข้าสู่ระบบ</h5>
 					<div class="card-body">
-						<form action="register_save.php" method="post" onsubmit="return validpwd()">
+						<form action="register_save.php" method="post" >
 							<div class="row">
 								<label for="login" class="col-lg-3 col-form-label">ชื่อบัญชี:</label>
 								<div class="col-lg-9 ps-0">
@@ -68,9 +71,9 @@ if (isset($_SESSION['id'])) {
 								</div>
 							</div>
 							<div class="row">
-								<label for="cpwd" class="col-lg-3 col-form-label mt-3">ใส่รหัสผ่านซ้ำ:</label>
+								<label for="confirmPwd" class="col-lg-3 col-form-label mt-3">ใส่รหัสผ่านซ้ำ:</label>
 								<div class="col-lg-9 mt-3 ps-0">
-									<input id="cpwd" type="password" name="cpwd" class="form-control" required>
+									<input id="confirmPwd" type="password" name="confirmPwd" class="form-control" onblur="validpwd()" required>
 								</div>
 							</div>
 							<div class="row">
