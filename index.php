@@ -12,18 +12,22 @@ if (!isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script>
-        function myFunction() {
-            let r = confirm("ต้องการจะลบจริงหรือไม่");
-            return r;
-        }
-    </script>
+
 </head>
 
 <body>
+<script>
+    function myFunction() {
+        let r = confirm("ต้องการจะลบจริงหรือไม่?");
+        return r; // คืนค่าผลการยืนยัน
+    }
+</script>
     <div class="container-lg">
         <h1 style="text-align: center;" class="mt-3">Stardew Valley Webboard</h1>
         <?php include "nav.php"; ?>
@@ -31,7 +35,8 @@ if (!isset($_GET['id'])) {
         <div class="mt-3 mb-3">
             <span class="dropdown">
                 หมวดหมู่:
-                <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <?php
                     $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
                     if ($_GET['id'] == 0) {
@@ -45,7 +50,7 @@ if (!isset($_GET['id'])) {
                     ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="Button2">
-                    <li><a class="dropdown-item" href="index.php?id=0">ทั้งหมด</a></li>
+                    <li><a class="dropdown-item" href="index.php">ทั้งหมด</a></li>
                     <?php
                     // Connect to the database
                     $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
@@ -87,25 +92,32 @@ if (!isset($_GET['id'])) {
             }
             $stmt = $conn->query($sql);
             while ($row = $stmt->fetch()) {
-                echo "<tr><td class='d-flex justify-content-between'> 
-                <div>[$row[0]] <a href='post.php?id=$row[2]' style='text-decoration:none'>$row[1]</a><br>$row[3] - $row[4]</div>";
-                if (isset($_SESSION['id'])&& $row[3] == $_SESSION['username']) {
-                        echo "<div class='me-2 align-self-center'>
-                        <a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm me-2'><i class='bi bi-pencil' style ='float:right'></i> Edit</a>";
-                    
-                } else if (isset($_SESSION['id'])) {
-                    if ($row[3] == $_SESSION['username']) {
-                        echo "<div class='me-2 align-self-center'>
-                    <a href='editpost.php?id=$row[2]' class='btn btn-warning btn-sm me-2'><i class='bi bi-pencil' style ='float:right'></i> Edit</a>";
-                        echo "<a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm' onclick='return myFunction()'>
-                    <i class='bi bi-trash'></i> Delete</a></div>";
-                    }
-                }
-                if (isset($_SESSION['id']) && $_SESSION['role'] == 'a'){
-                echo "<a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm' onclick='return myFunction()' style ='float:right'>
-                    <i class='bi bi-trash'></i> Delete</a></div>";
-                }
-                echo "</td></tr>";
+                echo "<tr>
+        <td class='d-flex justify-content-between align-items-center'> 
+            <div>
+                [$row[0]] <a href='post.php?id=$row[2]' style='text-decoration:none'>$row[1]</a><br>
+                $row[3] - $row[4]
+            </div>
+            <div>";
+
+                if (isset($_SESSION['id']) && $row[3] == $_SESSION['username']) {
+                    echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning  me-2'>
+                        <i class='bi bi-pencil'></i>
+                      </a>";
+
+                    echo "<a href='delete.php?id=$row[2]' class='btn btn-danger' onclick='return myFunction();'>
+                        <i class='bi bi-trash'></i>
+                      </a>";
+                } elseif (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
+
+                    echo "<a href='delete.php?id=$row[2]' class='btn btn-danger  onclick='return myFunction();'>
+                        <i class='bi bi-trash'></i>
+                      </a>";
+                }   
+
+
+                echo "</div></td></tr>";
+
             }
             $conn = null;
             ?>
