@@ -22,12 +22,12 @@ if (!isset($_GET['id'])) {
 </head>
 
 <body>
-<script>
-    function myFunction() {
-        let r = confirm("ต้องการจะลบจริงหรือไม่?");
-        return r; // คืนค่าผลการยืนยัน
-    }
-</script>
+    <script>
+        function Deleteconfirm() {
+            let r = confirm("ต้องการจะลบจริงหรือไม่?");
+            return r; // คืนค่าผลการยืนยัน
+        }
+    </script>
     <div class="container-lg">
         <h1 style="text-align: center;" class="mt-3">Stardew Valley Webboard</h1>
         <?php include "nav.php"; ?>
@@ -78,50 +78,49 @@ if (!isset($_GET['id'])) {
             $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
             if ($_GET['id'] == 0) {
                 $sql = "SELECT t3.name, t1.title, t1.id, t2.login, t1.post_date, t1.user_id 
-            FROM post AS t1 
-            INNER JOIN user AS t2 ON (t1.user_id=t2.id) 
-            INNER JOIN category AS t3 ON (t1.cat_id=t3.id)
-            ORDER BY t1.post_date DESC";
+                FROM post AS t1 
+                INNER JOIN user AS t2 ON (t1.user_id=t2.id) 
+                INNER JOIN category AS t3 ON (t1.cat_id=t3.id)
+                ORDER BY t1.post_date DESC";
             } else {
                 $sql = "SELECT t3.name, t1.title, t1.id, t2.login, t1.post_date, t1.user_id 
-            FROM post AS t1 
-            INNER JOIN user AS t2 ON (t1.user_id=t2.id) 
-            INNER JOIN category AS t3 ON (t1.cat_id=t3.id)
-            WHERE t3.id = $_GET[id]
-            ORDER BY t1.post_date DESC";
+                FROM post AS t1 
+                INNER JOIN user AS t2 ON (t1.user_id=t2.id) 
+                INNER JOIN category AS t3 ON (t1.cat_id=t3.id)
+                WHERE t3.id = $_GET[id]
+                ORDER BY t1.post_date DESC";
             }
             $stmt = $conn->query($sql);
+
             while ($row = $stmt->fetch()) {
                 echo "<tr>
-        <td class='d-flex justify-content-between align-items-center'> 
-            <div>
-                [$row[0]] <a href='post.php?id=$row[2]' style='text-decoration:none'>$row[1]</a><br>
-                $row[3] - $row[4]
-            </div>
-            <div>";
+            <td class='d-flex justify-content-between align-items-center'> 
+                <div>
+                    [$row[0]] <a href='post.php?id=$row[2]' style='text-decoration:none'>$row[1]</a><br>
+                    $row[3] - $row[4]
+                </div>
+                <div>";
+
 
                 if (isset($_SESSION['id']) && $row[3] == $_SESSION['username']) {
-                    echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning  me-2'>
-                        <i class='bi bi-pencil'></i>
-                      </a>";
+                    echo "<a href='editpost.php?id=$row[2]' class='btn btn-warning me-2'>
+                    <i class='bi bi-pencil'></i>
+                  </a>";
+                    echo "<a href='delete.php?id=$row[2]' class='btn btn-danger' onclick='return Deleteconfirm();'>
+                    <i class='bi bi-trash'></i>
+                  </a>";
+                }
 
-                    echo "<a href='delete.php?id=$row[2]' class='btn btn-danger' onclick='return myFunction();'>
-                        <i class='bi bi-trash'></i>
-                      </a>";
-                } elseif (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
-
-                    echo "<a href='delete.php?id=$row[2]' class='btn btn-danger  onclick='return myFunction();'>
-                        <i class='bi bi-trash'></i>
-                      </a>";
-                }   
-
+                elseif (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
+                    echo "<a href='delete.php?id=$row[2]' class='btn btn-danger' onclick='return Deleteconfirm();'>
+                    <i class='bi bi-trash'></i>
+                  </a>";
+                }
 
                 echo "</div></td></tr>";
-
             }
             $conn = null;
             ?>
-
         </table>
     </div>
 </body>
