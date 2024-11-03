@@ -50,6 +50,13 @@ if (!$post) {
         <h1 style="text-align: center;">Webboard KakKak</h1>
         <?php
         include "nav.php"
+        ?>
+        <?php 
+            if (isset($_GET['status']) && $_GET['status'] == 'success') {
+                echo "<div class='alert alert-success col-lg-5 mt-3 mx-auto'>แก้ไขข้อมูลเรียบร้อยแล้ว</div>";
+            } elseif (isset($_GET['status']) && $_GET['status'] == 'error') {
+                echo "<div class='alert alert-danger col-lg-5 mt-3 mx-auto'>เกิดข้อผิดพลาด ไม่สามารถแก้ไขโพสต์ได้</div>";
+            }
             ?>
         <div class="card text-dark bg-white border-warning col-lg-5 mt-3 mx-auto">
             <div class="card-header bg-warning text-white">แก้ไขกระทู้</div>
@@ -96,8 +103,8 @@ if (!$post) {
 
             </div>
 
-
-        </div>
+                                
+            </div>
     </div>
 </body>
 

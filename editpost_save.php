@@ -37,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // ดำเนินการคำสั่ง SQL
     if ($stmt->execute()) {
-        header("Location: index.php"); // ถ้าอัปเดตสำเร็จให้ไปหน้า index.php
+        header("Location: editpost.php?id=" . $post_id . "&status=success");
         exit();
     } else {
-        echo "เกิดข้อผิดพลาด ไม่สามารถแก้ไขโพสต์ได้";
+        header("Location: editpost.php?id=" . $post_id . "&status=error");
+        exit();
     }
 
     // ปิดการเชื่อมต่อฐานข้อมูล
-    $conn = null;
 } else {
     header("Location: index.php"); // ถ้าไม่ใช่ POST method ให้กลับไปหน้า index.php
     exit();
