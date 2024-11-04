@@ -16,12 +16,6 @@ if (!isset($_SESSION['id'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-<center>
-    <h1>Webboard Easy</h1>
-    </center>
-    <?php
-            include "nav.php"
-    ?>
     <div align = "center">
         <?php
             $num = $_GET['id'];
@@ -36,8 +30,15 @@ if (!isset($_SESSION['id'])) {
             $conn=null;
         ?>
         </div>
-        <div class="container-fluid mt-3">
-        <div class="card text-dark bg-white border-primary mx-auto" style="width: 60%;">
+        <div class="container-fluid mt-3 ">
+            
+        <center>
+    <h1>Stardew Valley Webboard</h1>
+    </center>
+    <?php
+            include "nav.php"
+    ?>
+        <div class="card text-dark bg-white border-primary mx-auto mt-3" style="width: 60%;">
             <div class="card-header bg-primary text-white"><?php echo $head; ?></div>
             <div class="card-body">
                 <?php echo $content; ?>

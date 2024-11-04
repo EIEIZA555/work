@@ -14,7 +14,7 @@
                             <a class='btn btn-outline-secondary btn-sm dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown'  aria-expanded='false'>
                             <i class='bi bi-person-lines-fill'></i> $_SESSION[username]
                             </a>
-                            <ul class='dropdown-menu dropdown-menu-end' >
+                            <ul class='dropdown-menu dropdown-menu-end'>
                                 <li><a class='dropdown-item' href='category.php'><i class='bi bi-bookmarks'></i> จัดการหมวดหมู่</a></li>
                                 <li><a class='dropdown-item' href='user.php'><i class='bi bi-person-check'></i> จัดการผู้ใช้งาน</a></li>
                                 <li><a class='dropdown-item' href='logout.php'><i class='bi bi-power'></i> ออกจากระบบ</a></li>
@@ -25,7 +25,7 @@
                             <a class='btn btn-outline-secondary btn-sm dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown'  aria-expanded='false'>
                             <i class='bi bi-person-lines-fill'></i> $_SESSION[username]
                             </a>
-                            <ul class='dropdown-menu dropdown-menu-end' >
+                            <ul class='dropdown-menu dropdown-menu-end'>
                                 <li><a class='dropdown-item' href='logout.php'><i class='bi bi-power'></i> ออกจากระบบ</a></li>
                             </ul>
                         </li>";

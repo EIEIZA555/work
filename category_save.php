@@ -5,7 +5,7 @@ $category = $_POST['category'];
 $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
 
 // ตรวจสอบว่าหมวดหมู่มีอยู่ในตารางหรือไม่
-$sql = "SELECT COUNT(*) FROM category WHERE name = '$category'";
+$sql = "SELECT name FROM category WHERE name = '$category'";
 $count = $conn->query($sql)->fetchColumn();
 
 if ($count == 0) { // ถ้าหมวดหมู่ยังไม่มีในฐานข้อมูล

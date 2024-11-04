@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
     <h1 style="text-align: center;">Stardew Valley Webboard</h1>
-    <div class="container-lg">
+    <div class="container-fluid">
         <?php
                 include "nav.php"
         ?>
@@ -39,6 +39,8 @@ session_start();
                     if (isset($_SESSION['cat_edit_save'])){
                         if ($_SESSION['cat_edit_save'] == 'done'){
                             echo "<div class='alert alert-success'>แก้ไขหมู่เรียบร้อยแล้ว</div>";
+                        }else{
+                            echo "<div class='alert alert-danger'>มีหมวดหมู่อยู่แล้ว</div>";
                         }
                         unset($_SESSION['cat_edit_save']);
                     }
@@ -47,12 +49,12 @@ session_start();
         </div>
 
         <br>
-        <div class="container-lg">
+        <div class="container-fluid">
                 <div class="col-sm-8 col-md-6 col-lg-6 mx-auto">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="cols" class="text-start" style="width: 10%;">ลำดับ</th>
+                                <th scope="cols" class="text-center" style="width: 10%;">ลำดับ</th>
                                 <th scope="cols" class="text-center" style="width: 60%;">ชื่อหมวดหมู่</th>
                                 <th scope="cols" class="text-center" style="width: 15%;">จัดการ</th>
                             </tr>
