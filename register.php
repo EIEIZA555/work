@@ -36,8 +36,8 @@ if (isset($_SESSION['id'])) {
 </head>
 
 <body>
+	<div class="container-fluid">
 	<h1 style="text-align: center;">Register</h1>
-	<div class="container-lg">
 		<?php include "nav.php" ?>
 		<div class="row">
 			<div class="col-lg-3 "></div>
@@ -117,7 +117,7 @@ if (isset($_SESSION['id'])) {
 
 
 
-	<div align="center"><a href="index.php">กลับไปหน้าหลัก</a></div>
+
 </body>
 
 </html>

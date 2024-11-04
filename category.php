@@ -25,6 +25,9 @@ session_start();
                         if ($_SESSION['cat_add_save'] == 'done'){
                             echo "<div class='alert alert-success'>เพิ่มหมวดหมู่เรียบร้อยแล้ว</div>";
                         }
+                        else{
+                            echo "<div class='alert alert-danger'>มีหมวดหมู่อยู่แล้ว</div>";
+                        }
                         unset($_SESSION['cat_add_save']);
                     }
                     if (isset($_SESSION['cat_delete_save'])){

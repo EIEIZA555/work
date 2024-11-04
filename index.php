@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_COOKIE['catagory'])) {
-    $_COOKIE['catagory'] = "ทั้งหมด";
+if (!isset($_COOKIE['category'])) {
+    $_COOKIE['category'] = "ทั้งหมด";
 }
 ?>
 <!DOCTYPE html>
@@ -20,30 +20,30 @@ if (!isset($_COOKIE['catagory'])) {
 </head>
 
 <body>
+    <div class="container-fluid mt-3">
     <center>
         <h1>Stardew Valley Webboard</h1>
     </center>
-    <div class="container-lg mt-3">
         <?php
         include "nav.php"
             ?>
         <div class="row">
             <div class="mt-3 mb-2">
                 <span class="dropdown">
-                    หมวดหมู่ :
-                    <button id="catSelect" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+                    หมวดหมู่ 
+                    <button id="categorySelect" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <?php
-                        echo $_COOKIE['catagory'];
+                        echo $_COOKIE['category'];
                         ?>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="Button2">
-                        <li><a onclick="selectCatagory('ทั้งหมด')" class="dropdown-item">--ทั้งหมด--</a></li>
+                        <li><a onclick="selectCategory('ทั้งหมด')" class="dropdown-item">--ทั้งหมด--</a></li>
                         <?php
                         $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
                         $sql = "SELECT name From category";
                         foreach ($conn->query($sql) as $row) {
-                            echo "<li><a onclick='selectCatagory(\"$row[0]\")' class='dropdown-item'>$row[0]</a></li>";
+                            echo "<li><a onclick='selectCategory(\"$row[0]\")' class='dropdown-item'>$row[0]</a></li>";
                         }
                         $conn = null;
                         ?>
@@ -51,7 +51,7 @@ if (!isset($_COOKIE['catagory'])) {
                 </span>
                 <?php
                 if (isset($_SESSION['id']) && $_SESSION['role'] != 'b') {
-                    echo "<a class='btn btn-success btn-sm' style ='float: right' role='button' href='newpost.php'>สร้างกระทู้ใหม่</a>";
+                    echo "<a class='btn btn-success btn-sm' style ='float: right' role='button' href='newpost.php'><i class='bi bi-plus'></i> สร้างกระทู้ใหม่</a>";
                 }
                 ?>
                 <br>
@@ -64,25 +64,31 @@ if (!isset($_COOKIE['catagory'])) {
                     Inner Join category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch()) {
-                        if ($_COOKIE['catagory'] != "ทั้งหมด" && $row[0] != $_COOKIE['catagory'] || $row[5] == 'b') {
+                        if ($_COOKIE['category'] != "ทั้งหมด" && $row[0] != $_COOKIE['category'] || $row[5] == 'b' ) {
                             continue;
                         }
-                        echo "<tr><td>[ $row[0] ] <a href='post.php?id=$row[2]' style='text-decoration:none'>$row[1]</a><div style ='float: right'>";
+                        echo "<tr>
+                                <td class='d-flex justify-content-between align-items-center'> 
+                                <div>
+                                    [ $row[0] ] <a href='post.php?id=$row[2]' style='text-decoration:none'>$row[1]</a><br>
+                                    $row[3] - $row[4]
+                                </div>
+                            <div>";
                         if (isset($_SESSION['id']) && $_SESSION['username'] == $row[3]) {
-                            echo "<a onclick='goeditpost($row[2])' class='btn btn-warning' role='button'><i class='bi bi-pencil-fill'></i></a> ";
+                            echo "<a onclick='editpost($row[2])' class='btn btn-warning' role='button'><i class='bi bi-pencil-fill'></i></a> ";
                         }
                         if (isset($_SESSION['id']) && $_SESSION['role'] == 'm' && $_SESSION['username'] == $row[3]) {
                             echo "<a onclick='confirmdelete($row[2])' class='btn btn-danger' role='button'><i class='bi bi-trash'></i></a>";
                         } else if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
-                            echo "<a onclick='confirmdelete($row[2])' class='btn btn-danger' role='button'><i class='bi bi-trash'></i></a>";
+                            echo "<a onclick='confirmdel($row[2])' class='btn btn-danger' role='button'><i class='bi bi-trash'></i></a>";
                         }
-                        echo "</div><br>$row[3] - $row[4]</td></tr>";
+                        echo "</div></td></tr>";
                     }
                     $conn = null;
                     ?>
                 </table>
                 <script>
-                    function confirmdelete(a) {
+                    function confirmdel(a) {
                         if (confirm("ต้องการจะลบจริงหรือไม่") == true) {
                             location.href = `delete.php?id=${a}`;
                         } else {
@@ -90,14 +96,14 @@ if (!isset($_COOKIE['catagory'])) {
                         }
                     };
 
-                    function goeditpost(a) {
+                    function editpost(a) {
                         location.href = `editpost.php?id=${a}`;
                     };
 
-                    function selectCatagory(a) {
-                        let catsel = document.getElementById("catSelect");
-                        document.cookie = "catagory=" + a + ";path=/"
-                        catsel.textContent = a;
+                    function selectCategory(a) {
+                        let categoryselect = document.getElementById("categorySelect");
+                        document.cookie = "category=" + a + ";path=/"
+                        categoryselect.textContent = a;
                         location.reload();
                     };
                 </script>

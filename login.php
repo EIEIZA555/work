@@ -37,11 +37,11 @@ if (isset($_SESSION['id'])) {
 </head>
 
 <body>
-    <h1 style="text-align: center;">Stardew Valley Webboard</h1>
-    <div class="container-lg">
+    <div class="container-fluid mt-3">
+    <h1 style="text-align: center;">Login</h1>    
         <?php include "nav.php" ?>
         <div class="row ">
-            <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
+            <div class="col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
                 <?php
                 if (isset($_SESSION['error'])) {
                     echo "<div class='alert alert-danger mt-3' role='alert'>

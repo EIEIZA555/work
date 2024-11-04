@@ -17,8 +17,8 @@ if (!isset($_SESSION['id'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-<div class="container-lg">
-    <h1 style="text-align: center;">Webboard KakKak</h1>
+<div class="container-fluid mt-3">
+    <h1 style="text-align: center;">Stardew Valley Webboard</h1>
     <?php 
             include "nav.php"
         ?>
