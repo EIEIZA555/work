@@ -78,7 +78,7 @@ if (!isset($_COOKIE['category'])) {
                             echo "<a onclick='editpost($row[2])' class='btn btn-warning' role='button'><i class='bi bi-pencil-fill'></i></a> ";
                         }
                         if (isset($_SESSION['id']) && $_SESSION['role'] == 'm' && $_SESSION['username'] == $row[3]) {
-                            echo "<a onclick='confirmdelete($row[2])' class='btn btn-danger' role='button'><i class='bi bi-trash'></i></a>";
+                            echo "<a onclick='confirmdel($row[2])' class='btn btn-danger' role='button'><i class='bi bi-trash'></i></a>";
                         } else if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
                             echo "<a onclick='confirmdel($row[2])' class='btn btn-danger' role='button'><i class='bi bi-trash'></i></a>";
                         }

@@ -85,12 +85,12 @@ if (isset($_SESSION['id'])) {
 							<div class="row">
 								<label for="" class="col-lg-3 col-form-label mt-3">เพศ:</label>
 								<div class="col-lg-9 mt-3 form-check ">
-									<input id="m" type="radio" name="gender" class="form-check-input " required>
-									<label for="m" class="form-check-label">ชาย</label><br>
-									<input id="f" type="radio" name="gender" class="form-check-input" required>
-									<label for="f" class="form-check-label">หญิง</label><br>
-									<input id="o" type="radio" name="gender" class="form-check-input" required>
-									<label for="o" class="form-check-label">อื่นๆ</label>
+									<input value="m" type="radio" name="gender" class="form-check-input " required>
+									ชาย<br>
+									<input value="f" type="radio" name="gender" class="form-check-input" required>
+									หญิง<br>
+									<input value="o" type="radio" name="gender" class="form-check-input" required>
+									อื่นๆ
 								</div>
 
 

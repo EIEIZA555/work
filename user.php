@@ -17,7 +17,7 @@ if (!isset($_SESSION['id']) && $_SESSION['role'] == 'a'){
 </head>
 <body>
     <h1 style="text-align: center;">Stardew Valley Webboard</h1>
-    <div class="container-lg">
+    <div class="container-fluid">
         <?php
                 include "nav.php"
         ?>

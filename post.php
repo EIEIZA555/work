@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
-    header("location:index.php");
-    die();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +34,7 @@ if (!isset($_SESSION['id'])) {
     <?php
             include "nav.php"
     ?>
-        <div class="card text-dark bg-white border-primary mx-auto mt-3" style="width: 60%;">
+        <div class="card text-dark bg-white border-primary mx-auto mt-4" style="width: 60%;">
             <div class="card-header bg-primary text-white"><?php echo $head; ?></div>
             <div class="card-body">
                 <?php echo $content; ?>
@@ -63,7 +59,7 @@ if (!isset($_SESSION['id'])) {
                     }
                 }
                 $conn=null;
-                if ($_SESSION['role'] != 'b'){
+                if (isset($_SESSION['id']) && $_SESSION['role'] != 'b'){
                     echo "<div class='card text-dark bg-white border-success mx-auto' style='width: 60%;'>
                             <div class='card-header bg-success text-white'>แสดงความคิดเห็น</div>
                             <div class='card-body'>
